@@ -1,26 +1,154 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --bg: #fcfcfb;
+  --bg-secondary: #f7f6f4;
+  --bg-tertiary: #f0efed;
+  --surface: #ffffff;
+  --text: #171716;
+  --text-secondary: #6c6b68;
+  --text-tertiary: #9b9a96;
+  --accent: #0056d6;
+  --accent-light: #e8f0fe;
+  --border: rgba(23, 23, 22, 0.08);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg: #121211;
+    --bg-secondary: #1d1c1b;
+    --bg-tertiary: #2a2927;
+    --surface: #1d1c1b;
+    --text: #f6f5f3;
+    --text-secondary: #a9a7a3;
+    --text-tertiary: #706f6c;
+    --accent: #4d9aff;
+    --accent-light: #1a2a3d;
+    --border: rgba(246, 245, 243, 0.08);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  --color-surface: var(--surface);
+  --color-muted: var(--bg-secondary);
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-border: var(--border);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children */
+.stagger > .reveal:nth-child(1) { transition-delay: 0ms; }
+.stagger > .reveal:nth-child(2) { transition-delay: 80ms; }
+.stagger > .reveal:nth-child(3) { transition-delay: 160ms; }
+.stagger > .reveal:nth-child(4) { transition-delay: 240ms; }
+.stagger > .reveal:nth-child(5) { transition-delay: 320ms; }
+.stagger > .reveal:nth-child(6) { transition-delay: 400ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* Phone mockup */
+.phone-frame {
+  width: 280px;
+  height: 580px;
+  border-radius: 40px;
+  border: 3px solid var(--border);
+  background: var(--surface);
+  box-shadow:
+    0 25px 60px rgba(0,0,0,0.12),
+    0 4px 20px rgba(0,0,0,0.06),
+    inset 0 0 0 1px rgba(255,255,255,0.05);
+  position: relative;
+  overflow: hidden;
+}
+.phone-frame::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 28px;
+  background: var(--text);
+  border-radius: 20px;
+  z-index: 10;
+}
+.phone-status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 24px 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* Floating nav */
+.nav-glass {
+  background: color-mix(in srgb, var(--surface) 85%, transparent);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border: 1px solid var(--border);
+}
+
+/* Feature card */
+.feature-card {
+  background: var(--bg-secondary);
+  border-radius: 20px;
+  padding: 28px;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+}
+
+/* CTA button */
+.cta-btn {
+  background: var(--accent);
+  color: #fff;
+  padding: 14px 32px;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 15px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 86, 214, 0.3);
+}
+.cta-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Smooth scroll */
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
