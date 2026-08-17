@@ -1,344 +1,130 @@
-"use client"
-
-import { useEffect, useRef } from "react"
 import {
-  MapPin,
+  Apple,
+  ArrowRight,
   CalendarDays,
-  Trophy,
-  Star,
-  Clock,
-  Shield,
+  Check,
   ChevronRight,
-  Zap,
-  Heart,
+  CircleHelp,
+  Clock3,
+  MapPin,
+  Menu,
+  ShieldCheck,
+  Sparkles,
+  Star,
+  Trophy,
   Users,
-} from "lucide-react"
+} from "lucide-react";
 
-function useReveal() {
-  const ref = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible")
-          }
-        })
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
-    )
-
-    const targets = el.querySelectorAll(".reveal")
-    targets.forEach((t) => observer.observe(t))
-
-    return () => observer.disconnect()
-  }, [])
-
-  return ref
+function PivotMark({ size = "standard" }: { size?: "standard" | "hero" | "small" }) {
+  return (
+    <svg className={`pivot-mark pivot-mark--${size}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-label="Pivot">
+      <rect width="32" height="32" rx="7" fill="#0056d6" />
+      <g fill="#ffffff" transform="translate(5.5 5.25) scale(0.512)">
+        <path fillRule="evenodd" clipRule="evenodd" d="M3.7768 41.1221C1.71775 41.6731 9.76328e-06 39.7946 8.98295e-06 37.6631L0 13.1257C0 9.27113 3.30096 0.201544 12.0172 0.201542C12.0172 0.201542 29.2912 0.201541 40.3596 0.20154C40.7363 5.65744 36.3055 10.4048 30.8366 10.4048H14.2846C12.773 10.4804 9.65911 11.5839 9.29633 15.3931C8.93354 19.2023 9.14517 29.6777 9.29633 34.4392C9.23601 36.5502 7.97235 39.9994 3.7768 41.1221Z" />
+        <path d="M13.6044 20.3814V29.7974C13.6044 30.7639 14.869 31.1874 15.4959 30.4517C18.5209 26.9016 20.7202 25.7226 21.5403 25.5964C22.9007 25.3697 26.075 25.5964 27.4355 25.5964C28.5388 25.5964 29.9296 24.4627 30.3831 23.5557L33.9431 16.6232C34.2848 15.9577 33.8016 15.1664 33.0535 15.1664H18.5926C14.5856 15.1664 13.6044 18.7942 13.6044 20.3814Z" />
+      </g>
+    </svg>
+  );
 }
 
-function PhoneMockup() {
+function StoreButton({ compact = false }: { compact?: boolean }) {
   return (
-    <div className="phone-frame mx-auto">
-      <div className="phone-status-bar">
-        <span>9:41</span>
-        <span className="flex gap-1 items-center">
-          <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor">
-            <rect x="0" y="8" width="3" height="4" rx="0.5" opacity="0.3" />
-            <rect x="4.5" y="5" width="3" height="7" rx="0.5" opacity="0.5" />
-            <rect x="9" y="2" width="3" height="10" rx="0.5" opacity="0.7" />
-            <rect x="13.5" y="0" width="3" height="12" rx="0.5" />
-          </svg>
-        </span>
-      </div>
+    <a className={`store-button${compact ? " store-button--compact" : ""}`} href="#descargar">
+      <Apple aria-hidden="true" />
+      {compact ? "Descargar" : "Próximamente en App Store"}
+    </a>
+  );
+}
 
-      <div className="p-5 pt-10 space-y-4">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
-            <MapPin className="w-4 h-4 text-white" />
-          </div>
-          <div>
-            <p className="text-[11px] font-semibold text-text-secondary">Cerca de ti</p>
-            <p className="text-sm font-bold">3 canchas disponibles</p>
+function PhonePreview() {
+  const courts = [
+    ["Cancha El Campín", "Fútbol 5 · 1.2 km", "$25.000/h"],
+    ["Paddle Club Norte", "Pádel · 2.8 km", "$30.000/h"],
+    ["Tenis City", "Tenis · 3.4 km", "$20.000/h"],
+  ];
+
+  return (
+    <div className="phone-shell" aria-label="Vista previa de la aplicación Pivot">
+      <div className="phone-screen">
+        <div className="phone-status"><span>9:41</span><span>● ● ●</span></div>
+        <div className="phone-island" />
+        <div className="phone-content">
+          <div className="phone-greeting"><span>Buenos días</span><strong>Encuentra tu cancha</strong></div>
+          <div className="phone-location"><MapPin aria-hidden="true" /><span>Bogotá, Colombia</span><ChevronRight aria-hidden="true" /></div>
+          <div className="phone-search">¿Qué deporte quieres jugar?</div>
+          <div className="phone-section-title"><strong>Cerca de ti</strong><span>Ver todo</span></div>
+          <div className="court-list">
+            {courts.map(([name, detail, price], index) => (
+              <div className="court-card" key={name}>
+                <div className={`court-art court-art--${index + 1}`}><span>{index === 0 ? "5" : index === 1 ? "P" : "T"}</span></div>
+                <div className="court-copy"><strong>{name}</strong><span>{detail}</span><span className="court-rating"><Star aria-hidden="true" /> 4.{8 + index}</span></div>
+                <b>{price}</b>
+              </div>
+            ))}
           </div>
         </div>
-
-        <div className="space-y-2.5">
-          {[
-            { name: "Cancha El Campín", sport: "Fútbol 5", price: "$25.000/h", rating: 4.8 },
-            { name: "Paddle Club Norte", sport: "Pádel", price: "$30.000/h", rating: 4.9 },
-            { name: "Tenis City", sport: "Tenis", price: "$20.000/h", rating: 4.7 },
-          ].map((c, i) => (
-            <div
-              key={i}
-              className="bg-muted rounded-xl p-3 flex items-center gap-3"
-              style={{ animationDelay: `${i * 100}ms` }}
-            >
-              <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
-                {i === 0 ? (
-                  <Users className="w-5 h-5 text-accent" />
-                ) : i === 1 ? (
-                  <Zap className="w-5 h-5 text-accent" />
-                ) : (
-                  <Heart className="w-5 h-5 text-accent" />
-                )}
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-xs font-bold truncate">{c.name}</p>
-                <p className="text-[10px] text-text-secondary">{c.sport}</p>
-              </div>
-              <div className="text-right shrink-0">
-                <p className="text-[10px] font-bold text-accent">{c.price}</p>
-                <p className="text-[10px] text-text-tertiary flex items-center gap-0.5 justify-end">
-                  <Star className="w-2.5 h-2.5 fill-amber-400 text-amber-400" />
-                  {c.rating}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="flex gap-2">
-          <div className="flex-1 bg-accent text-white rounded-xl py-2.5 text-center text-[11px] font-bold">
-            Reservar ahora
-          </div>
-          <div className="bg-muted rounded-xl px-3 flex items-center">
-            <CalendarDays className="w-4 h-4 text-text-secondary" />
-          </div>
-        </div>
+        <div className="phone-tabbar"><MapPin aria-hidden="true" /><CalendarDays aria-hidden="true" /><Trophy aria-hidden="true" /><span className="phone-profile">S</span></div>
       </div>
     </div>
-  )
+  );
 }
 
+const benefits = [
+  { icon: MapPin, title: "Todo cerca de ti", text: "Descubre espacios para jugar sin salir de tu zona." },
+  { icon: Clock3, title: "Reserva en minutos", text: "Elige tu horario y confirma tu partido en pocos toques." },
+  { icon: Users, title: "Juega acompañado", text: "Arma tu plan y comparte la reserva con tu equipo." },
+  { icon: Trophy, title: "Compite a tu ritmo", text: "Encuentra torneos y nuevos retos para tu deporte." },
+  { icon: Star, title: "Elige con confianza", text: "Mira valoraciones reales antes de reservar." },
+  { icon: ShieldCheck, title: "Pagos seguros", text: "Tu reserva y tu información siempre protegidas." },
+];
+
 export default function LandingPage() {
-  const heroRef = useReveal()
-  const featuresRef = useReveal()
-  const howRef = useReveal()
-  const ctaRef = useReveal()
-
   return (
-    <main className="flex flex-col min-h-screen">
-      {/* Nav */}
-      <nav className="fixed top-0 left-0 right-0 z-50 nav-glass">
-        <div className="max-w-6xl mx-auto flex items-center justify-between px-5 h-16">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
-              <MapPin className="w-4 h-4 text-white" />
-            </div>
-            <span className="text-lg font-bold tracking-tight">Pivot</span>
-          </div>
-          <div className="hidden sm:flex items-center gap-8 text-sm font-medium text-text-secondary">
-            <a href="#features" className="hover:text-foreground transition-colors">Funciones</a>
-            <a href="#how" className="hover:text-foreground transition-colors">Cómo funciona</a>
-            <a href="#download" className="hover:text-foreground transition-colors">Descargar</a>
-          </div>
-          <a href="#download" className="cta-btn !py-2.5 !px-5 !text-sm !rounded-xl">
-            Descargar
-          </a>
-        </div>
-      </nav>
+    <main>
+      <header className="site-header">
+        <a className="brand" href="#inicio"><PivotMark size="small" /><span>Pivot</span></a>
+        <nav className="header-links" aria-label="Navegación principal"><a href="#beneficios">Beneficios</a><a href="#como-funciona">Cómo funciona</a></nav>
+        <StoreButton compact />
+      </header>
 
-      {/* Hero */}
-      <section ref={heroRef} className="pt-28 pb-16 sm:pt-36 sm:pb-24 px-5">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <div className="text-center lg:text-left">
-            <div className="reveal inline-flex items-center gap-2 bg-accent-light text-accent px-3 py-1.5 rounded-full text-xs font-semibold mb-6">
-              <Zap className="w-3 h-3" />
-              Reserva en segundos
-            </div>
-            <h1 className="reveal text-[clamp(36px,8vw,64px)] font-bold leading-[1.08] tracking-tight mb-5">
-              Encuentra tu cancha.
-              <br />
-              <span className="text-accent">Reserva tu momento.</span>
-            </h1>
-            <p className="reveal text-lg text-text-secondary leading-relaxed max-w-md mx-auto lg:mx-0 mb-8">
-              Canchas de fútbol, tenis y pádel cerca de ti. Reserva en minutos, paga como quieras, compite en torneos.
-            </p>
-            <div className="reveal flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-              <a href="#download" className="cta-btn">
-                Empezar ahora
-                <ChevronRight className="w-4 h-4" />
-              </a>
-              <a
-                href="#how"
-                className="px-6 py-3.5 rounded-xl border border-border text-sm font-semibold text-text-secondary hover:bg-muted transition-colors"
-              >
-                Ver cómo funciona
-              </a>
-            </div>
-          </div>
-          <div className="reveal flex justify-center lg:justify-end">
-            <PhoneMockup />
-          </div>
+      <section className="hero-section" id="inicio">
+        <div className="hero-copy">
+          <PivotMark size="hero" />
+          <p className="eyebrow"><Sparkles aria-hidden="true" /> Tu cancha está más cerca</p>
+          <h1>Tu próximo partido.<br /><span>En Pivot.</span></h1>
+          <p className="hero-description">Encuentra canchas de fútbol, tenis y pádel. Reserva tu horario y solo preocúpate por jugar.</p>
+          <StoreButton />
+          <p className="store-note">Pronto disponible para iPhone y Android.</p>
+        </div>
+        <div className="hero-product"><div className="product-glow" /><PhonePreview /></div>
+      </section>
+
+      <section className="proof-strip" aria-label="Beneficios destacados">
+        <span><Check aria-hidden="true" /> Reserva rápida</span><span><Check aria-hidden="true" /> Canchas verificadas</span><span><Check aria-hidden="true" /> Pagos seguros</span>
+      </section>
+
+      <section className="feature-section" id="beneficios">
+        <div className="section-heading"><p className="section-label">Todo para jugar</p><h2>El plan empieza<br />con una cancha.</h2><p>Pivot reúne todo lo necesario para que organizar un partido sea tan fácil como jugarlo.</p></div>
+        <div className="benefit-grid">
+          {benefits.map(({ icon: Icon, title, text }) => <article className="benefit-card" key={title}><div className="benefit-icon"><Icon aria-hidden="true" /></div><h3>{title}</h3><p>{text}</p></article>)}
         </div>
       </section>
 
-      {/* Logos / Social proof */}
-      <section className="py-10 border-y border-border">
-        <div className="max-w-4xl mx-auto px-5 flex flex-wrap justify-center gap-8 sm:gap-14 text-text-tertiary text-sm font-medium">
-          <span className="flex items-center gap-2"><Star className="w-4 h-4 fill-amber-400 text-amber-400" /> 4.9 en App Store</span>
-          <span className="flex items-center gap-2"><Users className="w-4 h-4" /> 10,000+ jugadores</span>
-          <span className="flex items-center gap-2"><MapPin className="w-4 h-4" /> 500+ canchas</span>
-          <span className="flex items-center gap-2"><Trophy className="w-4 h-4" /> 200+ torneos</span>
+      <section className="steps-section" id="como-funciona">
+        <div className="section-heading"><p className="section-label">Así de simple</p><h2>Menos vueltas.<br />Más juego.</h2></div>
+        <div className="steps-list">
+          {[['01', 'Encuentra', 'Explora canchas según tu deporte, zona y horario.'], ['02', 'Reserva', 'Elige el espacio, confirma tu hora y paga seguro.'], ['03', 'Juega', 'Invita a tu equipo y disfruta el partido.']].map(([number, title, text]) => <article className="step" key={number}><span>{number}</span><div><h3>{title}</h3><p>{text}</p></div><ArrowRight aria-hidden="true" /></article>)}
         </div>
       </section>
 
-      {/* Features */}
-      <section id="features" ref={featuresRef} className="py-20 sm:py-28 px-5">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-14">
-            <h2 className="reveal text-[clamp(28px,4vw,42px)] font-bold tracking-tight mb-4">
-              Todo lo que necesitas para jugar
-            </h2>
-            <p className="reveal text-text-secondary text-lg max-w-lg mx-auto">
-              Desde encontrar una cancha hasta ganar un torneo. Todo en una app.
-            </p>
-          </div>
-
-          <div className="stagger grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {[
-              {
-                icon: MapPin,
-                title: "Canchas cerca de ti",
-                desc: "Mapa interactivo con todas las canchas disponibles. Filtra por deporte, precio y disponibilidad.",
-              },
-              {
-                icon: CalendarDays,
-                title: "Reserva en minutos",
-                desc: "Selecciona horario, cancha y método de pago. Confirmación instantánea.",
-              },
-              {
-                icon: Trophy,
-                title: "Torneos",
-                desc: "Inscríbete en torneos, arma tu equipo y compite por premios.",
-              },
-              {
-                icon: Star,
-                title: "Valoraciones",
-                desc: "Califica canchas y comparte tu experiencia con la comunidad.",
-              },
-              {
-                icon: Shield,
-                title: "Verificación de identidad",
-                desc: "Verificación segura de cédula para mayor confianza en torneos.",
-              },
-              {
-                icon: Clock,
-                title: "Historial y favoritos",
-                desc: "Accede rápido a tus canchas favoritas y reserva de nuevo en un toque.",
-              },
-            ].map((f, i) => (
-              <div key={i} className="reveal feature-card">
-                <div className="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
-                  <f.icon className="w-5 h-5 text-accent" />
-                </div>
-                <h3 className="text-base font-bold mb-2">{f.title}</h3>
-                <p className="text-sm text-text-secondary leading-relaxed">{f.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+      <section className="download-section" id="descargar">
+        <div className="download-panel"><PivotMark size="standard" /><h2>Tu cancha te está esperando.</h2><p>Prepárate para reservar y jugar sin complicaciones.</p><StoreButton /><small>Sin membresías. Sin llamadas. Solo juega.</small></div>
       </section>
 
-      {/* How it works */}
-      <section id="how" ref={howRef} className="py-20 sm:py-28 px-5 bg-bg-secondary">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-14">
-            <h2 className="reveal text-[clamp(28px,4vw,42px)] font-bold tracking-tight mb-4">
-              Cómo funciona
-            </h2>
-            <p className="reveal text-text-secondary text-lg max-w-lg mx-auto">
-              Tres pasos simples para jugar.
-            </p>
-          </div>
+      <section className="questions-section"><div className="section-heading"><p className="section-label">Preguntas</p><h2>Todo claro<br />desde el inicio.</h2></div><div className="question-list"><article><CircleHelp aria-hidden="true" /><div><h3>¿Cómo reservo una cancha?</h3><p>Busca por deporte y zona, elige un horario disponible y confirma tu reserva desde la app.</p></div></article><article><CircleHelp aria-hidden="true" /><div><h3>¿Puedo reservar para un grupo?</h3><p>Sí. Cuando tengas tu reserva, podrás compartirla con las personas que juegan contigo.</p></div></article></div></section>
 
-          <div className="stagger grid sm:grid-cols-3 gap-8">
-            {[
-              {
-                step: "01",
-                title: "Busca",
-                desc: "Explora canchas en el mapa o busca por deporte y zona.",
-              },
-              {
-                step: "02",
-                title: "Reserva",
-                desc: "Elige horario, cancha y forma de pago. Listo.",
-              },
-              {
-                step: "03",
-                title: "Juega",
-                desc: "Llega, juega y califica tu experiencia.",
-              },
-            ].map((s, i) => (
-              <div key={i} className="reveal text-center">
-                <div className="w-14 h-14 rounded-2xl bg-accent text-white flex items-center justify-center text-xl font-bold mx-auto mb-5">
-                  {s.step}
-                </div>
-                <h3 className="text-lg font-bold mb-2">{s.title}</h3>
-                <p className="text-sm text-text-secondary leading-relaxed max-w-xs mx-auto">
-                  {s.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section id="download" ref={ctaRef} className="py-20 sm:py-28 px-5">
-        <div className="max-w-3xl mx-auto text-center">
-          <div className="reveal">
-            <div className="w-16 h-16 rounded-2xl bg-accent flex items-center justify-center mx-auto mb-6">
-              <MapPin className="w-7 h-7 text-white" />
-            </div>
-            <h2 className="text-[clamp(28px,5vw,48px)] font-bold tracking-tight mb-5">
-              Tu próximo partido empieza aquí
-            </h2>
-            <p className="text-text-secondary text-lg max-w-md mx-auto mb-8">
-              Descarga Pivot y reserva tu cancha en segundos. Sin complicaciones.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="#" className="cta-btn !py-4 !px-8 !text-base !rounded-2xl">
-                <svg width="20" height="24" viewBox="0 0 20 24" fill="currentColor">
-                  <path d="M16.52 12.58c-.03-3.04 2.48-4.49 2.59-4.56-1.41-2.06-3.61-2.34-4.39-2.37-1.87-.19-3.66 1.1-4.61 1.1-.96 0-2.44-1.07-4.02-1.04-2.07.03-3.98 1.2-5.04 3.05-2.16 3.73-.55 9.26 1.55 12.29 1.03 1.47 2.26 3.13 3.87 3.07 1.54-.06 2.13-1 3.99-1 1.87 0 2.41 1 4.02.97 1.65-.03 2.7-1.5 3.72-2.97 1.18-1.71 1.67-3.37 1.7-3.45-.04-.02-3.27-1.25-3.3-4.97l-.08-.12zM13.03 3.88C13.85 2.89 14.41 1.55 14.26.2c-1.25.05-2.75.84-3.64 1.83-.79.87-1.49 2.25-1.3 3.57 1.39.11 2.81-.71 3.71-1.72z"/>
-                </svg>
-                App Store
-              </a>
-              <a href="#" className="cta-btn !py-4 !px-8 !text-base !rounded-2xl !bg-[#1a1a1a] dark:!bg-[#f0f0f0] dark:!text-[#1a1a1a]">
-                <svg width="20" height="22" viewBox="0 0 20 22" fill="currentColor">
-                  <path d="M1 1l9.5 10L1 21V1zM11.5 12.5l2.5 2.5-8.5 5 6-7.5zM14 9l2.5-2.5-2.5-2.5L11.5 9 14 9zM11.5 7.5l-8.5-5 8.5 5z"/>
-                </svg>
-                Google Play
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="border-t border-border py-10 px-5">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-md bg-accent flex items-center justify-center">
-              <MapPin className="w-3.5 h-3.5 text-white" />
-            </div>
-            <span className="text-sm font-bold">Pivot</span>
-          </div>
-          <div className="flex gap-6 text-xs text-text-tertiary">
-            <a href="#" className="hover:text-foreground transition-colors">Términos</a>
-            <a href="#" className="hover:text-foreground transition-colors">Privacidad</a>
-            <a href="#" className="hover:text-foreground transition-colors">Soporte</a>
-          </div>
-          <p className="text-xs text-text-tertiary">
-            &copy; {new Date().getFullYear()} Pivot. Todos los derechos reservados.
-          </p>
-        </div>
-      </footer>
+      <footer className="site-footer"><a className="brand" href="#inicio"><PivotMark size="small" /><span>Pivot</span></a><div><a href="#beneficios">Beneficios</a><a href="#como-funciona">Cómo funciona</a><a href="#descargar">Contacto</a></div><p>© 2025 Pivot. Hecho para jugar.</p></footer>
+      <div className="floating-bar"><Menu aria-hidden="true" /><span><strong>Pivot</strong><small>Inicio</small></span><StoreButton compact /></div>
     </main>
-  )
+  );
 }
