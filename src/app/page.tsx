@@ -103,7 +103,7 @@ export default function LandingPage() {
           <StoreButton />
           <p className="store-note">Pronto disponible para iPhone y Android.</p>
         </div>
-        <div className="hero-product"><div className="product-glow" /><img className="phone-asset" src="https://cdn.builder.io/api/v1/image/assets%2F184638e85c1e4e768a02fdcc4204e005%2F75c2823ba4ed486c8ffe3a3b9de9eb2b" alt="Pantalla de inicio de sesión de Pivot en un iPhone" /></div>
+        <div className="hero-product"><img className="phone-asset" src="https://cdn.builder.io/api/v1/image/assets%2F184638e85c1e4e768a02fdcc4204e005%2F75c2823ba4ed486c8ffe3a3b9de9eb2b" alt="Pantalla de inicio de sesión de Pivot en un iPhone" /></div>
       </section>
 
       <section className="proof-strip" aria-label="Beneficios destacados">
