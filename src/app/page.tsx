@@ -55,6 +55,20 @@ function DownloadOptions() {
   );
 }
 
+function StorePreviews() {
+  const previews = [
+    ["App Store", "Agenda en modo oscuro", "https://cdn.builder.io/api/v1/image/assets%2F184638e85c1e4e768a02fdcc4204e005%2Ff1f5f8b57007492888042d1d6b79dac7"],
+    ["Google Play", "Agenda en modo claro", "https://cdn.builder.io/api/v1/image/assets%2F184638e85c1e4e768a02fdcc4204e005%2F63b46fe4e741400ab41483943e4271dc"],
+    ["App Store", "Acceso a Pivot", "https://cdn.builder.io/api/v1/image/assets%2F184638e85c1e4e768a02fdcc4204e005%2F78008cace2214c81bca5bc854ec5e518"],
+  ];
+
+  return (
+    <div className="store-previews" aria-label="Previews temporales de Pivot para las tiendas">
+      {previews.map(([platform, title, src]) => <figure className="store-preview" key={src}><img src={src} alt={`${title} de Pivot para ${platform}`} /><figcaption><strong>{platform}</strong><span>{title}</span></figcaption></figure>)}
+    </div>
+  );
+}
+
 function PhonePreview() {
   const courts = [
     ["Cancha El Campín", "Fútbol 5 · 1.2 km", "$25.000/h"],
@@ -156,7 +170,7 @@ export default function LandingPage() {
       <section className="plans-section" id="planes"><div className="section-heading"><p className="section-label">Planes para crecer</p><h2>Elige cómo quieres avanzar.</h2><p>Estamos preparando opciones flexibles para que cada establecimiento encuentre el ritmo que necesita.</p></div><div className="plans-grid">{platformPlans.map(([title, text], index) => <article className={`plan-card${index === 1 ? " plan-card--featured" : ""}`} key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{text}</p><a className="text-link" href="#descargar">Quiero saber más <ArrowRight aria-hidden="true" /></a></article>)}</div></section>
 
       <section className="download-section" id="descargar">
-        <div className="download-panel"><PivotMark size="standard" /><h2>Tu cancha te está esperando.</h2><p>Prepárate para reservar y jugar sin complicaciones.</p><DownloadOptions /><small>Sin membresías. Sin llamadas. Solo juega.</small></div>
+        <div className="download-panel"><PivotMark size="standard" /><h2>Tu cancha te está esperando.</h2><p>Prepárate para reservar y jugar sin complicaciones.</p><DownloadOptions /><StorePreviews /><small>Previews temporales. Las versiones oficiales estarán disponibles pronto.</small></div>
       </section>
 
       <section className="questions-section"><div className="section-heading"><p className="section-label">Preguntas</p><h2>Todo claro<br />desde el inicio.</h2></div><div className="question-list"><article><CircleHelp aria-hidden="true" /><div><h3>¿Cómo reservo una cancha?</h3><p>Busca por deporte y zona, elige un horario disponible y confirma tu reserva desde la app.</p></div></article><article><CircleHelp aria-hidden="true" /><div><h3>¿Puedo reservar para un grupo?</h3><p>Sí. Cuando tengas tu reserva, podrás compartirla con las personas que juegan contigo.</p></div></article></div></section>
