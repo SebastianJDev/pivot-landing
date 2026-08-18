@@ -9,9 +9,7 @@ import {
   Clock3,
   MapPin,
   Menu,
-  Play,
   ShieldCheck,
-  Sparkles,
   Star,
   Trophy,
   Users,
@@ -37,6 +35,17 @@ function AppleGlyph() {
   );
 }
 
+function GooglePlayGlyph() {
+  return (
+    <svg className="google-play-glyph" viewBox="0 0 24 24" aria-hidden="true">
+      <path fill="#00d7ff" d="m2.5 3.2 10.6 8.8-10.6 8.8c-.3-.3-.5-.8-.5-1.4V4.6c0-.6.2-1.1.5-1.4Z" />
+      <path fill="#00f076" d="m14.1 12-2.8-2.3 2.9-2.4 3.5 2-3.6 2.7Z" />
+      <path fill="#ffcf00" d="m2.5 20.8 10.6-8.8 3.6 2.7-12.4 7.1c-.7.4-1.4 0-1.8-1Z" />
+      <path fill="#ff3b30" d="m2.5 3.2 12.4 7.1-3.6 2.7L2.5 3.2c.4-1 1.1-1.4 1.8-1Z" />
+    </svg>
+  );
+}
+
 function StoreButton({ compact = false }: { compact?: boolean }) {
   return (
     <a className={`store-button${compact ? " store-button--compact" : ""}`} href="#descargar">
@@ -50,7 +59,7 @@ function DownloadOptions() {
   return (
     <div className="download-options">
       <StoreButton />
-      <a className="play-store-button" href="#descargar"><Play aria-hidden="true" /> Próximamente en Google Play</a>
+      <a className="play-store-button" href="#descargar"><GooglePlayGlyph /> Próximamente en Google Play</a>
     </div>
   );
 }
@@ -127,15 +136,13 @@ export default function LandingPage() {
   return (
     <main>
       <header className="site-header">
-        <a className="brand" href="#inicio"><PivotMark size="small" /><span>Pivot</span></a>
+        <a className="brand" href="#inicio"><span>Pivot</span></a>
         <nav className="header-links" aria-label="Navegación principal"><a href="#beneficios">Beneficios</a><a href="#pivot-manager">Pivot Manager</a><a href="#planes">Planes</a></nav>
         <StoreButton compact />
       </header>
 
       <section className="hero-section" id="inicio">
         <div className="hero-copy">
-          <PivotMark size="hero" />
-          <p className="eyebrow"><Sparkles aria-hidden="true" /> Tu cancha está más cerca</p>
           <h1>Tu próximo partido.<br /><span>En Pivot.</span></h1>
           <p className="hero-description">Encuentra canchas de fútbol, tenis y pádel. Reserva tu horario y solo preocúpate por jugar.</p>
           <DownloadOptions />
@@ -170,12 +177,12 @@ export default function LandingPage() {
       <section className="plans-section" id="planes"><div className="section-heading"><p className="section-label">Planes para crecer</p><h2>Elige cómo quieres avanzar.</h2><p>Estamos preparando opciones flexibles para que cada establecimiento encuentre el ritmo que necesita.</p></div><div className="plans-grid">{platformPlans.map(([title, text], index) => <article className={`plan-card${index === 1 ? " plan-card--featured" : ""}`} key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{text}</p><a className="text-link" href="#descargar">Quiero saber más <ArrowRight aria-hidden="true" /></a></article>)}</div></section>
 
       <section className="download-section" id="descargar">
-        <div className="download-panel"><PivotMark size="standard" /><h2>Tu cancha te está esperando.</h2><p>Prepárate para reservar y jugar sin complicaciones.</p><DownloadOptions /><StorePreviews /><small>Previews temporales. Las versiones oficiales estarán disponibles pronto.</small></div>
+        <div className="download-panel"><h2>Tu cancha te está esperando.</h2><p>Prepárate para reservar y jugar sin complicaciones.</p><DownloadOptions /><StorePreviews /><small>Previews temporales. Las versiones oficiales estarán disponibles pronto.</small></div>
       </section>
 
       <section className="questions-section"><div className="section-heading"><p className="section-label">Preguntas</p><h2>Todo claro<br />desde el inicio.</h2></div><div className="question-list"><article><CircleHelp aria-hidden="true" /><div><h3>¿Cómo reservo una cancha?</h3><p>Busca por deporte y zona, elige un horario disponible y confirma tu reserva desde la app.</p></div></article><article><CircleHelp aria-hidden="true" /><div><h3>¿Puedo reservar para un grupo?</h3><p>Sí. Cuando tengas tu reserva, podrás compartirla con las personas que juegan contigo.</p></div></article></div></section>
 
-      <footer className="site-footer"><a className="brand" href="#inicio"><PivotMark size="small" /><span>Pivot</span></a><div><a href="#beneficios">Beneficios</a><a href="#como-funciona">Cómo funciona</a><a href="#descargar">Contacto</a></div><p>© 2025 Pivot. Hecho para jugar.</p></footer>
+      <footer className="site-footer"><a className="brand" href="#inicio"><span>Pivot</span></a><div><a href="#beneficios">Beneficios</a><a href="#como-funciona">Cómo funciona</a><a href="#descargar">Contacto</a></div><p>© 2025 Pivot. Hecho para jugar.</p></footer>
       <div className="floating-bar"><Menu aria-hidden="true" /><span><strong>Pivot</strong><small>Inicio</small></span><StoreButton compact /></div>
     </main>
   );
