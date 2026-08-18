@@ -1,5 +1,7 @@
 import {
   ArrowRight,
+  BarChart3,
+  Building2,
   CalendarDays,
   Check,
   ChevronRight,
@@ -7,6 +9,7 @@ import {
   Clock3,
   MapPin,
   Menu,
+  Play,
   ShieldCheck,
   Sparkles,
   Star,
@@ -40,6 +43,15 @@ function StoreButton({ compact = false }: { compact?: boolean }) {
       <AppleGlyph />
       {compact ? "Descargar" : "Próximamente en App Store"}
     </a>
+  );
+}
+
+function DownloadOptions() {
+  return (
+    <div className="download-options">
+      <StoreButton />
+      <a className="play-store-button" href="#descargar"><Play aria-hidden="true" /> Próximamente en Google Play</a>
+    </div>
   );
 }
 
@@ -85,12 +97,24 @@ const benefits = [
   { icon: ShieldCheck, title: "Pagos seguros", text: "Tu reserva y tu información siempre protegidas." },
 ];
 
+const managerFeatures = [
+  { icon: CalendarDays, title: "Agenda bajo control", text: "Organiza horarios, reservas y disponibilidad desde un solo lugar." },
+  { icon: BarChart3, title: "Mira cómo crece", text: "Conoce el movimiento de tu establecimiento y toma mejores decisiones." },
+  { icon: Building2, title: "Hecho para tu cancha", text: "Una herramienta dedicada para administrar tu operación sin complicaciones." },
+];
+
+const platformPlans = [
+  ["Para empezar", "Las herramientas esenciales para publicar tu espacio y comenzar a recibir reservas."],
+  ["Para crecer", "Más control de tu agenda, clientes y operación diaria en un mismo lugar."],
+  ["Para equipos", "Una solución pensada para establecimientos con más de una cancha o sede."],
+];
+
 export default function LandingPage() {
   return (
     <main>
       <header className="site-header">
         <a className="brand" href="#inicio"><PivotMark size="small" /><span>Pivot</span></a>
-        <nav className="header-links" aria-label="Navegación principal"><a href="#beneficios">Beneficios</a><a href="#como-funciona">Cómo funciona</a></nav>
+        <nav className="header-links" aria-label="Navegación principal"><a href="#beneficios">Beneficios</a><a href="#pivot-manager">Pivot Manager</a><a href="#planes">Planes</a></nav>
         <StoreButton compact />
       </header>
 
@@ -100,8 +124,8 @@ export default function LandingPage() {
           <p className="eyebrow"><Sparkles aria-hidden="true" /> Tu cancha está más cerca</p>
           <h1>Tu próximo partido.<br /><span>En Pivot.</span></h1>
           <p className="hero-description">Encuentra canchas de fútbol, tenis y pádel. Reserva tu horario y solo preocúpate por jugar.</p>
-          <StoreButton />
-          <p className="store-note">Pronto disponible para iPhone y Android.</p>
+          <DownloadOptions />
+          <p className="store-note">Disponible próximamente para iPhone, Android y Google Play.</p>
         </div>
         <div className="hero-product"><img className="phone-asset" src="https://cdn.builder.io/api/v1/image/assets%2F184638e85c1e4e768a02fdcc4204e005%2F75c2823ba4ed486c8ffe3a3b9de9eb2b" alt="Pantalla de inicio de sesión de Pivot en un iPhone" /></div>
       </section>
@@ -117,6 +141,11 @@ export default function LandingPage() {
         </div>
       </section>
 
+      <section className="manager-section" id="pivot-manager">
+        <div className="manager-intro"><p className="section-label">Para establecimientos</p><h2>Tu cancha también juega en equipo.</h2><p>Pivot Manager es la app dedicada a dueños y administradores de canchas. Lleva tu operación al siguiente nivel y deja que más personas encuentren tu espacio.</p><a className="text-link" href="#planes">Conoce nuestros planes <ArrowRight aria-hidden="true" /></a></div>
+        <div className="manager-grid">{managerFeatures.map(({ icon: Icon, title, text }) => <article className="manager-card" key={title}><div className="benefit-icon"><Icon aria-hidden="true" /></div><h3>{title}</h3><p>{text}</p></article>)}</div>
+      </section>
+
       <section className="steps-section" id="como-funciona">
         <div className="section-heading"><p className="section-label">Así de simple</p><h2>Menos vueltas.<br />Más juego.</h2></div>
         <div className="steps-list">
@@ -124,8 +153,10 @@ export default function LandingPage() {
         </div>
       </section>
 
+      <section className="plans-section" id="planes"><div className="section-heading"><p className="section-label">Planes para crecer</p><h2>Elige cómo quieres avanzar.</h2><p>Estamos preparando opciones flexibles para que cada establecimiento encuentre el ritmo que necesita.</p></div><div className="plans-grid">{platformPlans.map(([title, text], index) => <article className={`plan-card${index === 1 ? " plan-card--featured" : ""}`} key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{text}</p><a className="text-link" href="#descargar">Quiero saber más <ArrowRight aria-hidden="true" /></a></article>)}</div></section>
+
       <section className="download-section" id="descargar">
-        <div className="download-panel"><PivotMark size="standard" /><h2>Tu cancha te está esperando.</h2><p>Prepárate para reservar y jugar sin complicaciones.</p><StoreButton /><small>Sin membresías. Sin llamadas. Solo juega.</small></div>
+        <div className="download-panel"><PivotMark size="standard" /><h2>Tu cancha te está esperando.</h2><p>Prepárate para reservar y jugar sin complicaciones.</p><DownloadOptions /><small>Sin membresías. Sin llamadas. Solo juega.</small></div>
       </section>
 
       <section className="questions-section"><div className="section-heading"><p className="section-label">Preguntas</p><h2>Todo claro<br />desde el inicio.</h2></div><div className="question-list"><article><CircleHelp aria-hidden="true" /><div><h3>¿Cómo reservo una cancha?</h3><p>Busca por deporte y zona, elige un horario disponible y confirma tu reserva desde la app.</p></div></article><article><CircleHelp aria-hidden="true" /><div><h3>¿Puedo reservar para un grupo?</h3><p>Sí. Cuando tengas tu reserva, podrás compartirla con las personas que juegan contigo.</p></div></article></div></section>
