@@ -143,6 +143,7 @@ export default function LandingPage() {
 
       <section className="hero-section" id="inicio">
         <div className="hero-copy">
+          <PivotMark size="hero" />
           <h1>Tu próximo partido.<br /><span>En Pivot.</span></h1>
           <p className="hero-description">Encuentra canchas de fútbol, tenis y pádel. Reserva tu horario y solo preocúpate por jugar.</p>
           <DownloadOptions />
