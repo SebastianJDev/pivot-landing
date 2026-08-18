@@ -17,9 +17,16 @@ export const metadata: Metadata = {
   description:
     "Todo lo que necesitas para jugar está a unos cuantos toques de distancia. Canchas cerca de ti, reservas en minutos, torneos para competir.",
   openGraph: {
-    title: "Pivot",
-    description: "Encuentra tu cancha. Reserva tu momento.",
+    title: "Pivot — Encuentra tu cancha",
+    description: "Reserva fútbol, pádel y tenis sin complicaciones.",
     type: "website",
+    images: [{ url: "https://cdn.builder.io/api/v1/image/assets%2F184638e85c1e4e768a02fdcc4204e005%2F75c2823ba4ed486c8ffe3a3b9de9eb2b", alt: "Vista de la app Pivot" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pivot — Encuentra tu cancha",
+    description: "Reserva fútbol, pádel y tenis sin complicaciones.",
+    images: ["https://cdn.builder.io/api/v1/image/assets%2F184638e85c1e4e768a02fdcc4204e005%2F75c2823ba4ed486c8ffe3a3b9de9eb2b"],
   },
 };
 

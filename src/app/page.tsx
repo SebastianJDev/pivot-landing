@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import {
   ArrowRight,
@@ -121,7 +122,7 @@ export default function LandingPage() {
           <DownloadOptions />
           <p className="store-note">Disponible próximamente para iPhone, Android y Google Play.</p>
         </div>
-        <div className="hero-product"><div className="hero-orbit hero-orbit--one" /><div className="hero-orbit hero-orbit--two" /><img className="phone-asset" src="https://cdn.builder.io/api/v1/image/assets%2F184638e85c1e4e768a02fdcc4204e005%2F75c2823ba4ed486c8ffe3a3b9de9eb2b" alt="Pantalla de inicio de sesión de Pivot en un iPhone" /><div className="hero-floating-card"><span className="hero-floating-icon"><Check aria-hidden="true" /></span><span><strong>Reserva confirmada</strong><small>Cancha El Campín · 7:00 PM</small></span></div></div>
+        <div className="hero-product"><div className="hero-orbit hero-orbit--one" /><div className="hero-orbit hero-orbit--two" /><Image className="phone-asset" src="https://cdn.builder.io/api/v1/image/assets%2F184638e85c1e4e768a02fdcc4204e005%2F75c2823ba4ed486c8ffe3a3b9de9eb2b" alt="Pantalla de inicio de sesión de Pivot en un iPhone" width={780} height={1100} priority sizes="(max-width: 720px) 390px, 390px" /><div className="hero-floating-card"><span className="hero-floating-icon"><Check aria-hidden="true" /></span><span><strong>Reserva confirmada</strong><small>Cancha El Campín · 7:00 PM</small></span></div></div>
       </section>
 
       <section className="proof-strip" aria-label="Beneficios destacados">
