@@ -13,7 +13,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Pivot — Encuentra tu cancha. Reserva tu momento.",
+  title: "Pivot Web",
+  icons: {
+    icon: "/icon.svg",
+  },
   description:
     "Todo lo que necesitas para jugar está a unos cuantos toques de distancia. Canchas cerca de ti, reservas en minutos, torneos para competir.",
   openGraph: {
