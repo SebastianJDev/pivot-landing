@@ -1,5 +1,4 @@
 import {
-  Apple,
   ArrowRight,
   CalendarDays,
   Check,
@@ -27,10 +26,18 @@ function PivotMark({ size = "standard" }: { size?: "standard" | "hero" | "small"
   );
 }
 
+function AppleGlyph() {
+  return (
+    <svg className="apple-glyph" viewBox="0 0 24 24" aria-hidden="true">
+      <path fill="currentColor" d="M17.05 12.54c-.02-2.21 1.8-3.28 1.88-3.33a4.04 4.04 0 0 0-3.18-1.72c-1.34-.14-2.64.8-3.33.8-.7 0-1.77-.78-2.9-.76a4.28 4.28 0 0 0-3.6 2.2c-1.55 2.69-.4 6.65 1.1 8.82.75 1.06 1.62 2.25 2.78 2.21 1.11-.05 1.53-.71 2.87-.71 1.33 0 1.72.71 2.88.68 1.2-.02 1.95-1.07 2.68-2.14a8.77 8.77 0 0 0 1.22-2.48 3.84 3.84 0 0 1-2.4-3.57ZM14.86 6.06a3.92 3.92 0 0 0 .9-2.82 4 4 0 0 0-2.6 1.35 3.74 3.74 0 0 0-.93 2.7 3.3 3.3 0 0 0 2.63-1.23Z" />
+    </svg>
+  );
+}
+
 function StoreButton({ compact = false }: { compact?: boolean }) {
   return (
     <a className={`store-button${compact ? " store-button--compact" : ""}`} href="#descargar">
-      <Apple aria-hidden="true" />
+      <AppleGlyph />
       {compact ? "Descargar" : "Próximamente en App Store"}
     </a>
   );
