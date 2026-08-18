@@ -4,7 +4,6 @@ import {
   Building2,
   CalendarDays,
   Check,
-  ChevronRight,
   CircleHelp,
   Clock3,
   MapPin,
@@ -64,53 +63,6 @@ function DownloadOptions() {
   );
 }
 
-function StorePreviews() {
-  const previews = [
-    ["App Store", "Agenda en modo oscuro", "https://cdn.builder.io/api/v1/image/assets%2F184638e85c1e4e768a02fdcc4204e005%2Ff1f5f8b57007492888042d1d6b79dac7"],
-    ["Google Play", "Agenda en modo claro", "https://cdn.builder.io/api/v1/image/assets%2F184638e85c1e4e768a02fdcc4204e005%2F63b46fe4e741400ab41483943e4271dc"],
-    ["App Store", "Acceso a Pivot", "https://cdn.builder.io/api/v1/image/assets%2F184638e85c1e4e768a02fdcc4204e005%2F78008cace2214c81bca5bc854ec5e518"],
-  ];
-
-  return (
-    <div className="store-previews" aria-label="Previews temporales de Pivot para las tiendas">
-      {previews.map(([platform, title, src]) => <figure className="store-preview" key={src}><img src={src} alt={`${title} de Pivot para ${platform}`} /><figcaption><strong>{platform}</strong><span>{title}</span></figcaption></figure>)}
-    </div>
-  );
-}
-
-function PhonePreview() {
-  const courts = [
-    ["Cancha El Campín", "Fútbol 5 · 1.2 km", "$25.000/h"],
-    ["Paddle Club Norte", "Pádel · 2.8 km", "$30.000/h"],
-    ["Tenis City", "Tenis · 3.4 km", "$20.000/h"],
-  ];
-
-  return (
-    <div className="phone-shell" aria-label="Vista previa de la aplicación Pivot">
-      <div className="phone-screen">
-        <div className="phone-status"><span>9:41</span><span>● ● ●</span></div>
-        <div className="phone-island" />
-        <div className="phone-content">
-          <div className="phone-greeting"><span>Buenos días</span><strong>Encuentra tu cancha</strong></div>
-          <div className="phone-location"><MapPin aria-hidden="true" /><span>Bogotá, Colombia</span><ChevronRight aria-hidden="true" /></div>
-          <div className="phone-search">¿Qué deporte quieres jugar?</div>
-          <div className="phone-section-title"><strong>Cerca de ti</strong><span>Ver todo</span></div>
-          <div className="court-list">
-            {courts.map(([name, detail, price], index) => (
-              <div className="court-card" key={name}>
-                <div className={`court-art court-art--${index + 1}`}><span>{index === 0 ? "5" : index === 1 ? "P" : "T"}</span></div>
-                <div className="court-copy"><strong>{name}</strong><span>{detail}</span><span className="court-rating"><Star aria-hidden="true" /> 4.{8 + index}</span></div>
-                <b>{price}</b>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="phone-tabbar"><MapPin aria-hidden="true" /><CalendarDays aria-hidden="true" /><Trophy aria-hidden="true" /><span className="phone-profile">S</span></div>
-      </div>
-    </div>
-  );
-}
-
 const benefits = [
   { icon: MapPin, title: "Todo cerca de ti", text: "Descubre espacios para jugar sin salir de tu zona." },
   { icon: Clock3, title: "Reserva en minutos", text: "Elige tu horario y confirma tu partido en pocos toques." },
@@ -126,45 +78,40 @@ const managerFeatures = [
   { icon: Building2, title: "Hecho para tu cancha", text: "Una herramienta dedicada para administrar tu operación sin complicaciones." },
 ];
 
-const platformPlans = [
-  ["Para empezar", "Las herramientas esenciales para publicar tu espacio y comenzar a recibir reservas."],
-  ["Para crecer", "Más control de tu agenda, clientes y operación diaria en un mismo lugar."],
-  ["Para equipos", "Una solución pensada para establecimientos con más de una cancha o sede."],
-];
-
 export default function LandingPage() {
   return (
     <main>
       <header className="site-header">
         <a className="brand" href="#inicio"><span>Pivot</span></a>
-        <nav className="header-links" aria-label="Navegación principal"><a href="#beneficios">Beneficios</a><a href="#pivot-manager">Pivot Manager</a><a href="#planes">Planes</a></nav>
+        <nav className="header-links" aria-label="Navegación principal"><a href="#beneficios">Beneficios</a><a href="#pivot-manager">Para canchas</a><a href="#como-funciona">Cómo funciona</a></nav>
         <StoreButton compact />
       </header>
 
       <section className="hero-section" id="inicio">
         <div className="hero-copy">
+          <div className="hero-kicker"><span className="hero-kicker-dot" /> La forma más simple de reservar</div>
           <PivotMark size="hero" />
-          <h1>Tu próximo partido.<br /><span>En Pivot.</span></h1>
+          <h1>Tu próximo partido.<br /><span>Empieza aquí.</span></h1>
           <p className="hero-description">Encuentra canchas de fútbol, tenis y pádel. Reserva tu horario y solo preocúpate por jugar.</p>
           <DownloadOptions />
           <p className="store-note">Disponible próximamente para iPhone, Android y Google Play.</p>
         </div>
-        <div className="hero-product"><img className="phone-asset" src="https://cdn.builder.io/api/v1/image/assets%2F184638e85c1e4e768a02fdcc4204e005%2F75c2823ba4ed486c8ffe3a3b9de9eb2b" alt="Pantalla de inicio de sesión de Pivot en un iPhone" /></div>
+        <div className="hero-product"><div className="hero-orbit hero-orbit--one" /><div className="hero-orbit hero-orbit--two" /><img className="phone-asset" src="https://cdn.builder.io/api/v1/image/assets%2F184638e85c1e4e768a02fdcc4204e005%2F75c2823ba4ed486c8ffe3a3b9de9eb2b" alt="Pantalla de inicio de sesión de Pivot en un iPhone" /><div className="hero-floating-card"><span className="hero-floating-icon"><Check aria-hidden="true" /></span><span><strong>Reserva confirmada</strong><small>Cancha El Campín · 7:00 PM</small></span></div></div>
       </section>
 
       <section className="proof-strip" aria-label="Beneficios destacados">
-        <span><Check aria-hidden="true" /> Reserva rápida</span><span><Check aria-hidden="true" /> Canchas verificadas</span><span><Check aria-hidden="true" /> Pagos seguros</span>
+        <span><Check aria-hidden="true" /> Fútbol, pádel y tenis</span><span><Check aria-hidden="true" /> Reserva en minutos</span><span><Check aria-hidden="true" /> Todo en un solo lugar</span>
       </section>
 
       <section className="feature-section" id="beneficios">
-        <div className="section-heading"><p className="section-label">Todo para jugar</p><h2>El plan empieza<br />con una cancha.</h2><p>Pivot reúne todo lo necesario para que organizar un partido sea tan fácil como jugarlo.</p></div>
+        <div className="section-heading"><p className="section-label">Tu juego, a tu manera</p><h2>Encuentra el lugar.<br />Arma el plan.</h2><p>Descubre espacios cerca de ti, compara opciones y reserva el horario perfecto sin llamadas ni complicaciones.</p></div>
         <div className="benefit-grid">
           {benefits.map(({ icon: Icon, title, text }) => <article className="benefit-card" key={title}><div className="benefit-icon"><Icon aria-hidden="true" /></div><h3>{title}</h3><p>{text}</p></article>)}
         </div>
       </section>
 
       <section className="manager-section" id="pivot-manager">
-        <div className="manager-intro"><p className="section-label">Para establecimientos</p><h2>Tu cancha también juega en equipo.</h2><p>Pivot Manager es la app dedicada a dueños y administradores de canchas. Lleva tu operación al siguiente nivel y deja que más personas encuentren tu espacio.</p><a className="text-link" href="#planes">Conoce nuestros planes <ArrowRight aria-hidden="true" /></a></div>
+        <div className="manager-intro"><p className="section-label">Para establecimientos</p><h2>Más reservas.<br />Menos operación.</h2><p>Pivot Manager ayuda a dueños y administradores a organizar su agenda, recibir más jugadores y entender cómo crece su cancha desde un solo lugar.</p><a className="text-link" href="#descargar">Quiero conocer Pivot Manager <ArrowRight aria-hidden="true" /></a></div>
         <div className="manager-grid">{managerFeatures.map(({ icon: Icon, title, text }) => <article className="manager-card" key={title}><div className="benefit-icon"><Icon aria-hidden="true" /></div><h3>{title}</h3><p>{text}</p></article>)}</div>
       </section>
 
@@ -175,15 +122,13 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="plans-section" id="planes"><div className="section-heading"><p className="section-label">Planes para crecer</p><h2>Elige cómo quieres avanzar.</h2><p>Estamos preparando opciones flexibles para que cada establecimiento encuentre el ritmo que necesita.</p></div><div className="plans-grid">{platformPlans.map(([title, text], index) => <article className={`plan-card${index === 1 ? " plan-card--featured" : ""}`} key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{text}</p><a className="text-link" href="#descargar">Quiero saber más <ArrowRight aria-hidden="true" /></a></article>)}</div></section>
-
       <section className="download-section" id="descargar">
-        <div className="download-panel"><h2>Tu cancha te está esperando.</h2><p>Prepárate para reservar y jugar sin complicaciones.</p><DownloadOptions /><StorePreviews /><small>Previews temporales. Las versiones oficiales estarán disponibles pronto.</small></div>
+        <div className="download-panel"><PivotMark size="standard" /><p className="section-label">Muy pronto en tu bolsillo</p><h2>Menos organizar.<br />Más jugar.</h2><p>Déjanos tu interés y sé de los primeros en reservar con Pivot.</p><DownloadOptions /><div className="download-trust"><span><ShieldCheck aria-hidden="true" /> Pagos protegidos</span><span><Clock3 aria-hidden="true" /> Reservas rápidas</span></div></div>
       </section>
 
-      <section className="questions-section"><div className="section-heading"><p className="section-label">Preguntas</p><h2>Todo claro<br />desde el inicio.</h2></div><div className="question-list"><article><CircleHelp aria-hidden="true" /><div><h3>¿Cómo reservo una cancha?</h3><p>Busca por deporte y zona, elige un horario disponible y confirma tu reserva desde la app.</p></div></article><article><CircleHelp aria-hidden="true" /><div><h3>¿Puedo reservar para un grupo?</h3><p>Sí. Cuando tengas tu reserva, podrás compartirla con las personas que juegan contigo.</p></div></article></div></section>
+      <section className="questions-section"><div className="section-heading"><p className="section-label">Preguntas frecuentes</p><h2>Todo claro<br />desde el inicio.</h2><p>Lo importante antes de empezar, en un solo lugar.</p></div><div className="question-list"><article><CircleHelp aria-hidden="true" /><div><h3>¿Cómo reservo una cancha?</h3><p>Busca por deporte y zona, elige un horario disponible y confirma tu reserva desde la app.</p></div></article><article><CircleHelp aria-hidden="true" /><div><h3>¿Puedo reservar para un grupo?</h3><p>Sí. Cuando tengas tu reserva, podrás compartirla con las personas que juegan contigo.</p></div></article><article><CircleHelp aria-hidden="true" /><div><h3>¿Qué deportes encontraré?</h3><p>Empezamos con fútbol, pádel y tenis, y seguiremos sumando espacios para que siempre encuentres dónde jugar.</p></div></article></div></section>
 
-      <footer className="site-footer"><a className="brand" href="#inicio"><span>Pivot</span></a><div><a href="#beneficios">Beneficios</a><a href="#como-funciona">Cómo funciona</a><a href="#descargar">Contacto</a></div><p>© 2025 Pivot. Hecho para jugar.</p></footer>
+      <footer className="site-footer"><a className="brand" href="#inicio"><PivotMark size="small" /><span>Pivot</span></a><div><a href="#beneficios">Beneficios</a><a href="#como-funciona">Cómo funciona</a><a href="#descargar">Descargar</a></div><p>© 2025 Pivot. Hecho para jugar.</p></footer>
       <div className="floating-bar"><Menu aria-hidden="true" /><span><strong>Pivot</strong><small>Inicio</small></span><StoreButton compact /></div>
     </main>
   );
