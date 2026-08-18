@@ -155,7 +155,11 @@ export default function LandingPage() {
 
       <section className="questions-section"><div className="section-heading"><p className="section-label">Preguntas frecuentes</p><h2>Todo claro<br />desde el inicio.</h2><p>Lo importante antes de empezar, en un solo lugar.</p></div><div className="question-list"><article><CircleHelp aria-hidden="true" /><div><h3>¿Cómo reservo una cancha?</h3><p>Busca por deporte y zona, elige un horario disponible y confirma tu reserva desde la app.</p></div></article><article><CircleHelp aria-hidden="true" /><div><h3>¿Puedo reservar para un grupo?</h3><p>Sí. Cuando tengas tu reserva, podrás compartirla con las personas que juegan contigo.</p></div></article><article><CircleHelp aria-hidden="true" /><div><h3>¿Qué deportes encontraré?</h3><p>Empezamos con fútbol, pádel y tenis, y seguiremos sumando espacios para que siempre encuentres dónde jugar.</p></div></article></div></section>
 
-      <footer className="site-footer"><a className="brand" href="#inicio"><PivotMark size="small" /><span>Pivot</span></a><div><a href="#beneficios">Beneficios</a><a href="#como-funciona">Cómo funciona</a><a href="#descargar">Descargar</a></div><p>© 2025 Pivot. Hecho para jugar.</p></footer>
+      <footer className="site-footer">
+        <div className="footer-main"><a className="brand" href="#inicio"><PivotMark size="small" /><span>Pivot</span></a><div className="footer-cta"><span>¿Tienes una cancha?</span><a className="footer-manager-link" href="#pivot-manager">Registra tu espacio <ArrowRight aria-hidden="true" /></a></div></div>
+        <div className="footer-links"><div><a href="#beneficios">Beneficios</a><a href="#como-funciona">Cómo funciona</a><a href="#descargar">Descargar</a></div><div className="social-links" aria-label="Redes sociales"><a href="#" aria-label="Instagram">Instagram</a><a href="#" aria-label="TikTok">TikTok</a><a href="#" aria-label="Facebook">Facebook</a><a href="#" aria-label="LinkedIn">LinkedIn</a></div></div>
+        <div className="footer-bottom"><p>© 2025 Pivot. Hecho para jugar.</p><div className="footer-legal"><a href="#">Privacidad</a><a href="#">Términos</a></div></div>
+      </footer>
       <div className="floating-bar"><Menu aria-hidden="true" /><span><strong>Pivot</strong><small>Inicio</small></span><StoreButton compact /></div>
     </main>
   );
