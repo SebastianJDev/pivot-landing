@@ -143,3 +143,32 @@ body { overflow-x: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .phone-asset, .hero-floating-card { animation: none; }
 }
+
+.trust-section { width: min(100% - 64px, 1080px); margin: 0 auto; padding: 128px 0 145px; border-top: 1px solid var(--border); }
+.trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 62px; }
+.trust-card { padding: 27px; border: 1px solid var(--border); border-radius: 20px; background: var(--surface); box-shadow: 0 12px 30px rgba(23, 23, 22, .04); transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease; }
+.trust-card:hover { border-color: rgba(0, 86, 214, .24); box-shadow: var(--shadow-card); transform: translateY(-5px); }
+.trust-card-icon { display: grid; width: 44px; height: 44px; place-items: center; border-radius: 14px; background: var(--accent-light); color: var(--accent); }
+.trust-card-icon svg { width: 20px; height: 20px; }
+.trust-card h3 { margin: 25px 0 7px; font-size: 16px; letter-spacing: -.03em; }
+.trust-card p { margin: 0; color: var(--text-secondary); font-size: 13px; line-height: 1.5; }
+.interest-form { width: min(100%, 700px); margin-top: 28px; }
+.interest-fields { display: grid; grid-template-columns: 1fr 1.2fr auto; align-items: end; gap: 9px; }
+.interest-fields label { display: grid; gap: 7px; text-align: left; }
+.interest-fields label span { color: var(--text-secondary); font-size: 11px; font-weight: 700; }
+.interest-fields input, .interest-fields select { width: 100%; height: 50px; padding: 0 14px; border: 1px solid rgba(23, 23, 22, .13); border-radius: 13px; outline: none; background: rgba(255, 255, 255, .78); color: var(--text); font: inherit; font-size: 13px; transition: border-color .2s ease, box-shadow .2s ease; }
+.interest-fields input:focus, .interest-fields select:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(0, 86, 214, .1); }
+.interest-submit { display: inline-flex; height: 50px; align-items: center; justify-content: center; gap: 8px; padding: 0 17px; border: 0; border-radius: 13px; background: var(--accent); color: #fff; cursor: pointer; font: inherit; font-size: 13px; font-weight: 700; white-space: nowrap; transition: background .2s ease, transform .2s ease; }
+.interest-submit:hover { background: var(--accent-dark); transform: translateY(-2px); }
+.interest-submit svg { width: 15px; height: 15px; }
+.interest-note { margin: 12px 0 0; color: var(--text-tertiary); font-size: 11px; }
+.interest-success { display: inline-flex; align-items: center; gap: 6px; margin: 16px 0 0; color: #159c5a; font-size: 12px; font-weight: 700; }
+.interest-success svg { width: 15px; height: 15px; }
+
+@media (max-width: 720px) {
+  .trust-section { width: min(100% - 40px, 520px); padding: 86px 0; }
+  .trust-grid { grid-template-columns: 1fr; gap: 10px; margin-top: 45px; }
+  .trust-card { padding: 21px; }
+  .interest-fields { grid-template-columns: 1fr; gap: 11px; }
+  .interest-submit { width: 100%; }
+}

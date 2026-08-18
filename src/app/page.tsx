@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import {
   ArrowRight,
   BarChart3,
@@ -63,6 +66,28 @@ function DownloadOptions() {
   );
 }
 
+function InterestForm() {
+  const [submitted, setSubmitted] = useState(false);
+
+  return (
+    <form className="interest-form" onSubmit={(event) => { event.preventDefault(); setSubmitted(true); }}>
+      <div className="interest-fields">
+        <label><span>Tu email</span><input type="email" name="email" placeholder="tu@email.com" required /></label>
+        <label><span>Qué buscas</span><select name="interest" defaultValue="jugador"><option value="jugador">Quiero reservar canchas</option><option value="establecimiento">Quiero registrar mi cancha</option></select></label>
+        <button className="interest-submit" type="submit">Quiero enterarme <ArrowRight aria-hidden="true" /></button>
+      </div>
+      <p className="interest-note">Sin spam. Solo te avisaremos cuando Pivot esté disponible.</p>
+      {submitted && <p className="interest-success" role="status"><Check aria-hidden="true" /> ¡Listo! Tu interés quedó registrado.</p>}
+    </form>
+  );
+}
+
+const trustPoints = [
+  { icon: MapPin, title: "Encuentra cerca", text: "Filtra por deporte, ubicación y horario." },
+  { icon: ShieldCheck, title: "Reserva seguro", text: "Confirma tu espacio sin vueltas." },
+  { icon: Users, title: "Juega en equipo", text: "Comparte el plan con quienes quieres invitar." },
+];
+
 const benefits = [
   { icon: MapPin, title: "Todo cerca de ti", text: "Descubre espacios para jugar sin salir de tu zona." },
   { icon: Clock3, title: "Reserva en minutos", text: "Elige tu horario y confirma tu partido en pocos toques." },
@@ -110,6 +135,8 @@ export default function LandingPage() {
         </div>
       </section>
 
+      <section className="trust-section"><div className="section-heading"><p className="section-label">Una mejor forma de jugar</p><h2>Todo lo que necesitas, antes del partido.</h2><p>Pivot conecta la cancha, el horario y tu equipo para que organizar el plan se sienta tan fácil como jugarlo.</p></div><div className="trust-grid">{trustPoints.map(({ icon: Icon, title, text }) => <article className="trust-card" key={title}><div className="trust-card-icon"><Icon aria-hidden="true" /></div><h3>{title}</h3><p>{text}</p></article>)}</div></section>
+
       <section className="manager-section" id="pivot-manager">
         <div className="manager-intro"><p className="section-label">Para establecimientos</p><h2>Más reservas.<br />Menos operación.</h2><p>Pivot Manager ayuda a dueños y administradores a organizar su agenda, recibir más jugadores y entender cómo crece su cancha desde un solo lugar.</p><a className="text-link" href="#descargar">Quiero conocer Pivot Manager <ArrowRight aria-hidden="true" /></a></div>
         <div className="manager-grid">{managerFeatures.map(({ icon: Icon, title, text }) => <article className="manager-card" key={title}><div className="benefit-icon"><Icon aria-hidden="true" /></div><h3>{title}</h3><p>{text}</p></article>)}</div>
@@ -123,7 +150,7 @@ export default function LandingPage() {
       </section>
 
       <section className="download-section" id="descargar">
-        <div className="download-panel"><PivotMark size="standard" /><p className="section-label">Muy pronto en tu bolsillo</p><h2>Menos organizar.<br />Más jugar.</h2><p>Déjanos tu interés y sé de los primeros en reservar con Pivot.</p><DownloadOptions /><div className="download-trust"><span><ShieldCheck aria-hidden="true" /> Pagos protegidos</span><span><Clock3 aria-hidden="true" /> Reservas rápidas</span></div></div>
+        <div className="download-panel"><PivotMark size="standard" /><p className="section-label">Muy pronto en tu bolsillo</p><h2>Menos organizar.<br />Más jugar.</h2><p>Déjanos tu interés y sé de los primeros en reservar con Pivot.</p><InterestForm /><div className="download-trust"><span><ShieldCheck aria-hidden="true" /> Pagos protegidos</span><span><Clock3 aria-hidden="true" /> Reservas rápidas</span></div></div>
       </section>
 
       <section className="questions-section"><div className="section-heading"><p className="section-label">Preguntas frecuentes</p><h2>Todo claro<br />desde el inicio.</h2><p>Lo importante antes de empezar, en un solo lugar.</p></div><div className="question-list"><article><CircleHelp aria-hidden="true" /><div><h3>¿Cómo reservo una cancha?</h3><p>Busca por deporte y zona, elige un horario disponible y confirma tu reserva desde la app.</p></div></article><article><CircleHelp aria-hidden="true" /><div><h3>¿Puedo reservar para un grupo?</h3><p>Sí. Cuando tengas tu reserva, podrás compartirla con las personas que juegan contigo.</p></div></article><article><CircleHelp aria-hidden="true" /><div><h3>¿Qué deportes encontraré?</h3><p>Empezamos con fútbol, pádel y tenis, y seguiremos sumando espacios para que siempre encuentres dónde jugar.</p></div></article></div></section>
