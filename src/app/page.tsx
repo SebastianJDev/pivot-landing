@@ -5,21 +5,28 @@ import {
   CalendarDays,
   Check,
   ChevronRight,
-  CircleHelp,
   Clock3,
   MapPin,
-  Menu,
   ShieldCheck,
   Star,
   Trophy,
   Users,
 } from "lucide-react";
 
-function PivotMark({ size = "standard" }: { size?: "standard" | "hero" | "small" }) {
+import ScrollReveal from "./scroll-reveal";
+import ScrollProgress from "./scroll-progress";
+import NavTracker from "./nav-tracker";
+import FaqAccordion from "./faq-accordion";
+import Parallax from "./parallax";
+import PhoneFrame from "./phone-frame";
+import { AppStoreBadge, PlayStoreBadge } from "./store-badges";
+
+function PivotMark({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
+  const cls = size === "sm" ? "h-7 w-7" : size === "lg" ? "h-10 w-10" : "h-8 w-8";
   return (
-    <svg className={`pivot-mark pivot-mark--${size}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-label="Pivot">
-      <rect width="32" height="32" rx="7" fill="#0056d6" />
-      <g fill="#ffffff" transform="translate(5.5 5.25) scale(0.512)">
+    <svg className={cls} viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-label="Pivot">
+      <rect width="32" height="32" rx="8" fill="#0056d6" />
+      <g fill="#fff" transform="translate(5.5 5.25) scale(.512)">
         <path fillRule="evenodd" clipRule="evenodd" d="M3.7768 41.1221C1.71775 41.6731 9.76328e-06 39.7946 8.98295e-06 37.6631L0 13.1257C0 9.27113 3.30096 0.201544 12.0172 0.201542C12.0172 0.201542 29.2912 0.201541 40.3596 0.20154C40.7363 5.65744 36.3055 10.4048 30.8366 10.4048H14.2846C12.773 10.4804 9.65911 11.5839 9.29633 15.3931C8.93354 19.2023 9.14517 29.6777 9.29633 34.4392C9.23601 36.5502 7.97235 39.9994 3.7768 41.1221Z" />
         <path d="M13.6044 20.3814V29.7974C13.6044 30.7639 14.869 31.1874 15.4959 30.4517C18.5209 26.9016 20.7202 25.7226 21.5403 25.5964C22.9007 25.3697 26.075 25.5964 27.4355 25.5964C28.5388 25.5964 29.9296 24.4627 30.3831 23.5557L33.9431 16.6232C34.2848 15.9577 33.8016 15.1664 33.0535 15.1664H18.5926C14.5856 15.1664 13.6044 18.7942 13.6044 20.3814Z" />
       </g>
@@ -27,163 +34,222 @@ function PivotMark({ size = "standard" }: { size?: "standard" | "hero" | "small"
   );
 }
 
-function AppleGlyph() {
-  return (
-    <svg className="apple-glyph" viewBox="0 0 24 24" aria-hidden="true">
-      <path fill="currentColor" d="M17.05 12.54c-.02-2.21 1.8-3.28 1.88-3.33a4.04 4.04 0 0 0-3.18-1.72c-1.34-.14-2.64.8-3.33.8-.7 0-1.77-.78-2.9-.76a4.28 4.28 0 0 0-3.6 2.2c-1.55 2.69-.4 6.65 1.1 8.82.75 1.06 1.62 2.25 2.78 2.21 1.11-.05 1.53-.71 2.87-.71 1.33 0 1.72.71 2.88.68 1.2-.02 1.95-1.07 2.68-2.14a8.77 8.77 0 0 0 1.22-2.48 3.84 3.84 0 0 1-2.4-3.57ZM14.86 6.06a3.92 3.92 0 0 0 .9-2.82 4 4 0 0 0-2.6 1.35 3.74 3.74 0 0 0-.93 2.7 3.3 3.3 0 0 0 2.63-1.23Z" />
-    </svg>
-  );
-}
-
-function GooglePlayGlyph() {
-  return (
-    <svg className="google-play-glyph" viewBox="0 0 24 24" aria-hidden="true">
-      <path fill="#00d7ff" d="m2.5 3.2 10.6 8.8-10.6 8.8c-.3-.3-.5-.8-.5-1.4V4.6c0-.6.2-1.1.5-1.4Z" />
-      <path fill="#00f076" d="m14.1 12-2.8-2.3 2.9-2.4 3.5 2-3.6 2.7Z" />
-      <path fill="#ffcf00" d="m2.5 20.8 10.6-8.8 3.6 2.7-12.4 7.1c-.7.4-1.4 0-1.8-1Z" />
-      <path fill="#ff3b30" d="m2.5 3.2 12.4 7.1-3.6 2.7L2.5 3.2c.4-1 1.1-1.4 1.8-1Z" />
-    </svg>
-  );
-}
-
-function StoreButton({ compact = false }: { compact?: boolean }) {
-  return (
-    <a className={`store-button${compact ? " store-button--compact" : ""}`} href="#descargar">
-      <AppleGlyph />
-      {compact ? "Descargar" : "Próximamente en App Store"}
-    </a>
-  );
-}
-
-function DownloadOptions() {
-  return (
-    <div className="download-options">
-      <StoreButton />
-      <a className="play-store-button" href="#descargar"><GooglePlayGlyph /> Próximamente en Google Play</a>
-    </div>
-  );
-}
-
-function StorePreviews() {
-  const previews = [
-    ["App Store", "Agenda en modo oscuro", "https://cdn.builder.io/api/v1/image/assets%2F184638e85c1e4e768a02fdcc4204e005%2Ff1f5f8b57007492888042d1d6b79dac7"],
-    ["Google Play", "Agenda en modo claro", "https://cdn.builder.io/api/v1/image/assets%2F184638e85c1e4e768a02fdcc4204e005%2F63b46fe4e741400ab41483943e4271dc"],
-    ["App Store", "Acceso a Pivot", "https://cdn.builder.io/api/v1/image/assets%2F184638e85c1e4e768a02fdcc4204e005%2F78008cace2214c81bca5bc854ec5e518"],
-  ];
-
-  return (
-    <div className="store-previews" aria-label="Previews temporales de Pivot para las tiendas">
-      {previews.map(([platform, title, src]) => <figure className="store-preview" key={src}><img src={src} alt={`${title} de Pivot para ${platform}`} /><figcaption><strong>{platform}</strong><span>{title}</span></figcaption></figure>)}
-    </div>
-  );
-}
-
-function PhonePreview() {
-  const courts = [
-    ["Cancha El Campín", "Fútbol 5 · 1.2 km", "$25.000/h"],
-    ["Paddle Club Norte", "Pádel · 2.8 km", "$30.000/h"],
-    ["Tenis City", "Tenis · 3.4 km", "$20.000/h"],
-  ];
-
-  return (
-    <div className="phone-shell" aria-label="Vista previa de la aplicación Pivot">
-      <div className="phone-screen">
-        <div className="phone-status"><span>9:41</span><span>● ● ●</span></div>
-        <div className="phone-island" />
-        <div className="phone-content">
-          <div className="phone-greeting"><span>Buenos días</span><strong>Encuentra tu cancha</strong></div>
-          <div className="phone-location"><MapPin aria-hidden="true" /><span>Bogotá, Colombia</span><ChevronRight aria-hidden="true" /></div>
-          <div className="phone-search">¿Qué deporte quieres jugar?</div>
-          <div className="phone-section-title"><strong>Cerca de ti</strong><span>Ver todo</span></div>
-          <div className="court-list">
-            {courts.map(([name, detail, price], index) => (
-              <div className="court-card" key={name}>
-                <div className={`court-art court-art--${index + 1}`}><span>{index === 0 ? "5" : index === 1 ? "P" : "T"}</span></div>
-                <div className="court-copy"><strong>{name}</strong><span>{detail}</span><span className="court-rating"><Star aria-hidden="true" /> 4.{8 + index}</span></div>
-                <b>{price}</b>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="phone-tabbar"><MapPin aria-hidden="true" /><CalendarDays aria-hidden="true" /><Trophy aria-hidden="true" /><span className="phone-profile">S</span></div>
-      </div>
-    </div>
-  );
-}
-
-const benefits = [
-  { icon: MapPin, title: "Todo cerca de ti", text: "Descubre espacios para jugar sin salir de tu zona." },
-  { icon: Clock3, title: "Reserva en minutos", text: "Elige tu horario y confirma tu partido en pocos toques." },
-  { icon: Users, title: "Juega acompañado", text: "Arma tu plan y comparte la reserva con tu equipo." },
-  { icon: Trophy, title: "Compite a tu ritmo", text: "Encuentra torneos y nuevos retos para tu deporte." },
-  { icon: Star, title: "Elige con confianza", text: "Mira valoraciones reales antes de reservar." },
-  { icon: ShieldCheck, title: "Pagos seguros", text: "Tu reserva y tu información siempre protegidas." },
+const venues = [
+  { name: "Club Deportivo Norte", addr: "Cra 15 #80-20, Bogotá", img: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=600&q=80" },
+  { name: "Padel City", addr: "Calle 72 #11-40, Bogotá", img: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=600&q=80" },
+  { name: "Tenis Club Bogotá", addr: "Cra 7 #45-12, Bogotá", img: "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=600&q=80" },
+  { name: "Fútbol Arena", addr: "Av Boyacá #80-31, Bogotá", img: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=600&q=80" },
+  { name: "Deportes Total", addr: "Calle 134 #15-20, Bogotá", img: "https://images.unsplash.com/photo-1526232761682-d26e03ac148e?w=600&q=80" },
 ];
 
-const managerFeatures = [
-  { icon: CalendarDays, title: "Agenda bajo control", text: "Organiza horarios, reservas y disponibilidad desde un solo lugar." },
-  { icon: BarChart3, title: "Mira cómo crece", text: "Conoce el movimiento de tu establecimiento y toma mejores decisiones." },
-  { icon: Building2, title: "Hecho para tu cancha", text: "Una herramienta dedicada para administrar tu operación sin complicaciones." },
-];
-
-const platformPlans = [
-  ["Para empezar", "Las herramientas esenciales para publicar tu espacio y comenzar a recibir reservas."],
-  ["Para crecer", "Más control de tu agenda, clientes y operación diaria en un mismo lugar."],
-  ["Para equipos", "Una solución pensada para establecimientos con más de una cancha o sede."],
+const testimonials = [
+  { name: "Andrés M.", from: "Bogotá", text: "Reservar una cancha nunca fue tan fácil. En dos toques ya tengo mi partido confirmado.", init: "A" },
+  { name: "Laura G.", from: "Medellín", text: "Me encanta poder ver las canchas cerca de mi casa con precio y disponibilidad al instante.", init: "L" },
+  { name: "Carlos R.", from: "Cali", text: "Uso Pivot cada semana con mi grupo de fútbol. Es rápido, seguro y sin complicaciones.", init: "C" },
 ];
 
 export default function LandingPage() {
   return (
     <main>
-      <header className="site-header">
-        <a className="brand" href="#inicio"><span>Pivot</span></a>
-        <nav className="header-links" aria-label="Navegación principal"><a href="#beneficios">Beneficios</a><a href="#pivot-manager">Pivot Manager</a><a href="#planes">Planes</a></nav>
-        <StoreButton compact />
+      <ScrollProgress />
+
+      <header className="header">
+        <a className="header-brand" href="#inicio">
+          <PivotMark size="sm" /><span>Pivot</span>
+        </a>
+        <NavTracker />
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <a className="header-cta" href="#descargar">Descargar</a>
+        </div>
       </header>
 
-      <section className="hero-section" id="inicio">
-        <div className="hero-copy">
-          <h1>Tu próximo partido.<br /><span>En Pivot.</span></h1>
-          <p className="hero-description">Encuentra canchas de fútbol, tenis y pádel. Reserva tu horario y solo preocúpate por jugar.</p>
-          <DownloadOptions />
-          <p className="store-note">Disponible próximamente para iPhone, Android y Google Play.</p>
+      {/* Hero */}
+      <section className="hero container" id="inicio">
+        <div className="hero-text">
+          <h1 data-r>Encuentra <em>canchas</em> y <em>jugadores</em> cerca de ti.</h1>
+          <p className="hero-sub" data-r data-rd="1">
+            Reserva canchas de fútbol, tenis y pádel. Conecta con otros jugadores y disfruta del deporte sin complicaciones.
+          </p>
+          <div className="hero-actions" data-r data-rd="2">
+            <AppStoreBadge />
+            <PlayStoreBadge />
+          </div>
+          <p className="hero-note" data-r data-rd="3">Disponible próximamente para iPhone y Android.</p>
         </div>
-        <div className="hero-product"><img className="phone-asset" src="https://cdn.builder.io/api/v1/image/assets%2F184638e85c1e4e768a02fdcc4204e005%2F75c2823ba4ed486c8ffe3a3b9de9eb2b" alt="Pantalla de inicio de sesión de Pivot en un iPhone" /></div>
+        <Parallax speed={0.15}>
+          <div data-r="scale" data-rd="1">
+            <PhoneFrame src="/screenshots/client-main-mobile.png" alt="Pivot - Login" />
+          </div>
+        </Parallax>
       </section>
 
-      <section className="proof-strip" aria-label="Beneficios destacados">
-        <span><Check aria-hidden="true" /> Reserva rápida</span><span><Check aria-hidden="true" /> Canchas verificadas</span><span><Check aria-hidden="true" /> Pagos seguros</span>
-      </section>
+      {/* Stats */}
+      <div className="container">
+        <div className="stats" data-r>
+          <div><div className="stat-num">500+</div><div className="stat-label">Canchas</div></div>
+          <div><div className="stat-num">10k+</div><div className="stat-label">Jugadores</div></div>
+          <div><div className="stat-num">50+</div><div className="stat-label">Clubes</div></div>
+        </div>
+      </div>
 
-      <section className="feature-section" id="beneficios">
-        <div className="section-heading"><p className="section-label">Todo para jugar</p><h2>El plan empieza<br />con una cancha.</h2><p>Pivot reúne todo lo necesario para que organizar un partido sea tan fácil como jugarlo.</p></div>
-        <div className="benefit-grid">
-          {benefits.map(({ icon: Icon, title, text }) => <article className="benefit-card" key={title}><div className="benefit-icon"><Icon aria-hidden="true" /></div><h3>{title}</h3><p>{text}</p></article>)}
+      {/* What is Pivot */}
+      <section className="section container" id="que-es">
+        <div className="section-header" data-r>
+          <div className="section-label">Qué es Pivot</div>
+          <h2>Todo lo que necesitas para jugar, en una sola app.</h2>
+          <p>Pivot conecta jugadores con canchas y clubes de tu zona. Reserva, paga y disfruta sin llamadas ni mensajes.</p>
+        </div>
+        <div style={{ display: "flex", justifyContent: "center", gap: 40, marginTop: 56, flexWrap: "wrap" }}>
+          <div data-r="left">
+            <PhoneFrame src="/screenshots/client-main-mobile.png" alt="Pivot - Login" />
+          </div>
+          <div data-r="right">
+            <PhoneFrame src="/screenshots/client-login-mobile.png" alt="Pivot - App" />
+          </div>
         </div>
       </section>
 
-      <section className="manager-section" id="pivot-manager">
-        <div className="manager-intro"><p className="section-label">Para establecimientos</p><h2>Tu cancha también juega en equipo.</h2><p>Pivot Manager es la app dedicada a dueños y administradores de canchas. Lleva tu operación al siguiente nivel y deja que más personas encuentren tu espacio.</p><a className="text-link" href="#planes">Conoce nuestros planes <ArrowRight aria-hidden="true" /></a></div>
-        <div className="manager-grid">{managerFeatures.map(({ icon: Icon, title, text }) => <article className="manager-card" key={title}><div className="benefit-icon"><Icon aria-hidden="true" /></div><h3>{title}</h3><p>{text}</p></article>)}</div>
-      </section>
-
-      <section className="steps-section" id="como-funciona">
-        <div className="section-heading"><p className="section-label">Así de simple</p><h2>Menos vueltas.<br />Más juego.</h2></div>
-        <div className="steps-list">
-          {[['01', 'Encuentra', 'Explora canchas según tu deporte, zona y horario.'], ['02', 'Reserva', 'Elige el espacio, confirma tu hora y paga seguro.'], ['03', 'Juega', 'Invita a tu equipo y disfruta el partido.']].map(([number, title, text]) => <article className="step" key={number}><span>{number}</span><div><h3>{title}</h3><p>{text}</p></div><ArrowRight aria-hidden="true" /></article>)}
+      {/* Venues */}
+      <section className="section section-alt" id="clubes">
+        <div className="container">
+          <div className="section-header center" data-r>
+            <div className="section-label">Clubes destacados</div>
+            <h2>Los mejores clubes, a un toque.</h2>
+          </div>
+          <div className="venues-scroll">
+            {venues.map((v, i) => (
+              <article className="venue-card" key={v.name} data-r data-rd={i % 3 + 1}>
+                <div className="venue-img">
+                  <img src={v.img} alt={v.name} loading="lazy" />
+                </div>
+                <div className="venue-info">
+                  <h3>{v.name}</h3>
+                  <p>{v.addr}</p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="plans-section" id="planes"><div className="section-heading"><p className="section-label">Planes para crecer</p><h2>Elige cómo quieres avanzar.</h2><p>Estamos preparando opciones flexibles para que cada establecimiento encuentre el ritmo que necesita.</p></div><div className="plans-grid">{platformPlans.map(([title, text], index) => <article className={`plan-card${index === 1 ? " plan-card--featured" : ""}`} key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{text}</p><a className="text-link" href="#descargar">Quiero saber más <ArrowRight aria-hidden="true" /></a></article>)}</div></section>
-
-      <section className="download-section" id="descargar">
-        <div className="download-panel"><h2>Tu cancha te está esperando.</h2><p>Prepárate para reservar y jugar sin complicaciones.</p><DownloadOptions /><StorePreviews /><small>Previews temporales. Las versiones oficiales estarán disponibles pronto.</small></div>
+      {/* How it works */}
+      <section className="section container" id="como-funciona">
+        <div className="section-header center" data-r>
+          <div className="section-label">Cómo funciona</div>
+          <h2>Así de simple.</h2>
+        </div>
+        <div className="steps-grid">
+          {[
+            { n: "01", title: "Busca", text: "Explora canchas por deporte, zona y horario disponible." },
+            { n: "02", title: "Reserva", text: "Elige tu cancha, confirma el horario y paga seguro desde la app." },
+            { n: "03", title: "Juega", text: "Invita a tu equipo, llega a la cancha y disfruta del partido." },
+          ].map(({ n, title, text }, i) => (
+            <div className="step-card" key={n} data-r data-rd={i + 1}>
+              <div className="step-num">{n}</div>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
-      <section className="questions-section"><div className="section-heading"><p className="section-label">Preguntas</p><h2>Todo claro<br />desde el inicio.</h2></div><div className="question-list"><article><CircleHelp aria-hidden="true" /><div><h3>¿Cómo reservo una cancha?</h3><p>Busca por deporte y zona, elige un horario disponible y confirma tu reserva desde la app.</p></div></article><article><CircleHelp aria-hidden="true" /><div><h3>¿Puedo reservar para un grupo?</h3><p>Sí. Cuando tengas tu reserva, podrás compartirla con las personas que juegan contigo.</p></div></article></div></section>
+      {/* Manager */}
+      <section className="section section-alt" id="pivot-manager">
+        <div className="container">
+          <div className="about-grid" style={{ alignItems: "center" }}>
+            <div data-r="left">
+              <div className="section-label">Para clubes</div>
+              <h2 style={{ margin: "0 0 18px", fontSize: "clamp(32px, 4vw, 44px)", fontWeight: 800, letterSpacing: "-.05em", lineHeight: 1 }}>
+                Tu club también juega en equipo.
+              </h2>
+              <p style={{ color: "var(--text-2)", fontSize: 17, lineHeight: 1.6, margin: "0 0 28px" }}>
+                Pivot Manager es la herramienta para administrar tu establecimiento. Controla reservas, horarios y pagos desde un solo lugar.
+              </p>
+              <a className="btn btn-primary" href="#planes" style={{ display: "inline-flex" }}>
+                Conoce los planes <ArrowRight />
+              </a>
+            </div>
+            <div data-r="right" style={{ display: "flex", justifyContent: "center" }}>
+              <PhoneFrame src="/screenshots/client-main-mobile.png" alt="Pivot Manager - Panel" />
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <footer className="site-footer"><a className="brand" href="#inicio"><span>Pivot</span></a><div><a href="#beneficios">Beneficios</a><a href="#como-funciona">Cómo funciona</a><a href="#descargar">Contacto</a></div><p>© 2025 Pivot. Hecho para jugar.</p></footer>
-      <div className="floating-bar"><Menu aria-hidden="true" /><span><strong>Pivot</strong><small>Inicio</small></span><StoreButton compact /></div>
+      {/* Testimonials */}
+      <section className="section container" id="testimonios">
+        <div className="section-header center" data-r>
+          <div className="section-label">Lo que dicen</div>
+          <h2>Jugadores que ya usan Pivot.</h2>
+        </div>
+        <div className="testimonials-grid">
+          {testimonials.map((t, i) => (
+            <div className="testimonial" key={t.name} data-r data-rd={i + 1}>
+              <div className="testimonial-stars">★★★★★</div>
+              <blockquote>&ldquo;{t.text}&rdquo;</blockquote>
+              <div className="testimonial-author">
+                <div className="testimonial-avatar">{t.init}</div>
+                <div>
+                  <div className="testimonial-name">{t.name}</div>
+                  <div className="testimonial-from">{t.from}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Download CTA */}
+      <section className="section container" id="descargar">
+        <div className="download-panel" data-r="scale">
+          <div className="download-text">
+            <h2>Tu cancha te está esperando.</h2>
+            <p>Descarga Pivot y empieza a reservar en minutos.</p>
+            <div className="download-actions">
+              <AppStoreBadge />
+              <PlayStoreBadge />
+            </div>
+          </div>
+          <Parallax speed={0.1}>
+            <div className="download-phone">
+              <PhoneFrame src="/screenshots/client-login-mobile.png" alt="Pivot - Reserva" />
+            </div>
+          </Parallax>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="section container" id="preguntas">
+        <div className="section-header center" data-r>
+          <div className="section-label">Preguntas</div>
+          <h2>Todo claro desde el inicio.</h2>
+        </div>
+        <div style={{ maxWidth: 640, margin: "0 auto" }}>
+          <FaqAccordion />
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="footer container">
+        <a className="header-brand" href="#inicio">
+          <PivotMark size="sm" /><span>Pivot</span>
+        </a>
+        <div className="footer-links">
+          <a href="#que-es">Qué es Pivot</a>
+          <a href="#clubes">Clubes</a>
+          <a href="#descargar">Contacto</a>
+        </div>
+        <p className="footer-copy">&copy; 2025 Pivot. Hecho para jugar.</p>
+      </footer>
+
+      {/* Mobile floating bar */}
+      <div className="floating-bar">
+        <PivotMark size="sm" />
+        <span><strong>Pivot</strong><small>Inicio</small></span>
+        <a className="btn btn-primary" style={{ height: 42, padding: "0 16px", fontSize: 14, borderRadius: 12 }} href="#descargar">Descargar</a>
+      </div>
+
+      <ScrollReveal />
     </main>
   );
 }
