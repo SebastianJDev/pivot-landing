@@ -33,11 +33,11 @@ export function PlayStoreBadge() {
         transition: "border-color .2s, transform .2s",
       }}
     >
-      <svg width="20" height="22" viewBox="0 0 20 22" fill="none">
-        <path d="M1 1.5l9.5 9.5L1 20.5V1.5z" fill="#4285F4" />
-        <path d="M10.5 11l2.5-2.5 4 2.3-6.5 3.7V11z" fill="#34A853" />
-        <path d="M1 20.5l10-9.5-2.5-2.5L1 20.5z" fill="#EA4335" />
-        <path d="M1 1.5l7.5 7.5L11 6.5 1 1.5z" fill="#FBBC05" />
+      <svg width="22" height="24" viewBox="0 0 22 24" aria-hidden="true">
+        <path d="M1.2 1.4c-.3.4-.5 1-.5 1.8v17.6c0 .8.2 1.4.5 1.8L12 12 1.2 1.4Z" fill="#4285F4" />
+        <path d="m15.8 15.8-3.8-3.8L1.2 22.6c.5.5 1.2.5 1.9.1l12.7-6.9Z" fill="#34A853" />
+        <path d="m15.8 8.2-12.7-6.9c-.7-.4-1.4-.4-1.9.1L12 12l3.8-3.8Z" fill="#FBBC04" />
+        <path d="m15.8 8.2 4.1 2.2c1.2.7 1.2 1.7 0 2.4l-4.1 2.2-3.8-3.8 3.8-3.8Z" fill="#EA4335" />
       </svg>
       <div style={{ display: "grid" }}>
         <span style={{ fontSize: 9, lineHeight: 1, letterSpacing: ".02em", opacity: .7 }}>Disponible en</span>

@@ -101,7 +101,8 @@ export default function LandingPage() {
         <div className="container">
           <div className="section-header center" data-r>
             <div className="section-label">Clubes destacados</div>
-            <h2>Los mejores clubes, a un toque.</h2>
+            <h2>Las mejores canchas cerca de ti.</h2>
+            <p>Encuentra tu próximo partido por ubicación, deporte y disponibilidad.</p>
           </div>
           <div className="venues-scroll">
             {venues.map((v, i) => (
@@ -110,8 +111,10 @@ export default function LandingPage() {
                   <img src={v.img} alt={v.name} loading="lazy" />
                 </div>
                 <div className="venue-info">
+                  <div className="venue-topline"><span className="venue-sport">Disponible hoy</span><span className="venue-rating">4.9 ★</span></div>
                   <h3>{v.name}</h3>
                   <p>{v.addr}</p>
+                  <div className="venue-bottomline"><span>Desde $45.000</span><span>· 1.2 km</span></div>
                 </div>
               </article>
             ))}
