@@ -1,17 +1,4 @@
-import {
-  ArrowRight,
-  BarChart3,
-  Building2,
-  CalendarDays,
-  Check,
-  ChevronRight,
-  Clock3,
-  MapPin,
-  ShieldCheck,
-  Star,
-  Trophy,
-  Users,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import ScrollReveal from "./scroll-reveal";
 import ScrollProgress from "./scroll-progress";
@@ -99,13 +86,13 @@ export default function LandingPage() {
           <h2>Todo lo que necesitas para jugar, en una sola app.</h2>
           <p>Pivot conecta jugadores con canchas y clubes de tu zona. Reserva, paga y disfruta sin llamadas ni mensajes.</p>
         </div>
-        <div style={{ display: "flex", justifyContent: "center", gap: 40, marginTop: 56, flexWrap: "wrap" }}>
-          <div data-r="left">
-            <PhoneFrame src="/screenshots/client-main-mobile.png" alt="Pivot - Login" />
+        <div className="product-board" data-r="scale" aria-label="Vista previa de las herramientas de Pivot">
+          <div className="board-heading"><span className="live-dot" /> Disponibilidad en tiempo real <strong>Hoy, 24 jun</strong></div>
+          <div className="board-main">
+            <div className="court-card"><div className="court-lines" /><span className="court-badge">Cancha 03</span><strong>Padel City</strong><small>4 jugadores · 90 min</small></div>
+            <div className="booking-list"><div><span className="booking-time">18:00</span><span><b>Cancha sintética</b><small>Club Deportivo Norte</small></span><em>Disponible</em></div><div><span className="booking-time">19:30</span><span><b>Cancha de pádel</b><small>Padel City</small></span><em>Disponible</em></div><div><span className="booking-time">21:00</span><span><b>Cancha cubierta</b><small>Tenis Club Bogotá</small></span><em>2 cupos</em></div></div>
           </div>
-          <div data-r="right">
-            <PhoneFrame src="/screenshots/client-login-mobile.png" alt="Pivot - App" />
-          </div>
+          <div className="board-footer"><span><strong>12</strong> reservas hoy</span><span><strong>98%</strong> ocupación</span><a href="#descargar">Explorar clubes <ArrowRight /></a></div>
         </div>
       </section>
 
@@ -114,7 +101,8 @@ export default function LandingPage() {
         <div className="container">
           <div className="section-header center" data-r>
             <div className="section-label">Clubes destacados</div>
-            <h2>Los mejores clubes, a un toque.</h2>
+            <h2>Las mejores canchas cerca de ti.</h2>
+            <p>Encuentra tu próximo partido por ubicación, deporte y disponibilidad.</p>
           </div>
           <div className="venues-scroll">
             {venues.map((v, i) => (
@@ -123,8 +111,10 @@ export default function LandingPage() {
                   <img src={v.img} alt={v.name} loading="lazy" />
                 </div>
                 <div className="venue-info">
+                  <div className="venue-topline"><span className="venue-sport">Disponible hoy</span><span className="venue-rating">4.9 ★</span></div>
                   <h3>{v.name}</h3>
                   <p>{v.addr}</p>
+                  <div className="venue-bottomline"><span>Desde $45.000</span><span>· 1.2 km</span></div>
                 </div>
               </article>
             ))}
@@ -169,8 +159,13 @@ export default function LandingPage() {
                 Conoce los planes <ArrowRight />
               </a>
             </div>
-            <div data-r="right" style={{ display: "flex", justifyContent: "center" }}>
-              <PhoneFrame src="/screenshots/client-main-mobile.png" alt="Pivot Manager - Panel" />
+            <div className="manager-board" data-r="right" aria-label="Panel de gestión de Pivot Manager">
+              <div className="manager-top"><span className="manager-avatar">PD</span><span><b>Panel del club</b><small>Padel City</small></span><span className="manager-status">Activo</span></div>
+              <div className="manager-metrics"><div><small>Reservas hoy</small><strong>38</strong><span>+12% esta semana</span></div><div><small>Ingresos</small><strong>$1.8M</strong><span>+8.4% este mes</span></div></div>
+              <div className="schedule-label"><b>Agenda de hoy</b><span>Ver calendario <ArrowRight /></span></div>
+              <div className="schedule-row"><b>18:00</b><span>Cancha 01 <small>Fútbol 5</small></span><i>Confirmada</i></div>
+              <div className="schedule-row"><b>19:30</b><span>Cancha 04 <small>Pádel · 4 jugadores</small></span><i>Confirmada</i></div>
+              <div className="schedule-row"><b>21:00</b><span>Cancha 02 <small>Tenis</small></span><i>Por confirmar</i></div>
             </div>
           </div>
         </div>

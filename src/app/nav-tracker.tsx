@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const sections = ["beneficios", "pivot-manager", "planes"];
+const sections = ["que-es", "clubes", "como-funciona", "pivot-manager"];
 
 export default function NavTracker() {
   const [active, setActive] = useState("");
@@ -35,7 +35,7 @@ export default function NavTracker() {
           href={`#${id}`}
           className={active === id ? "active" : ""}
         >
-          {id === "pivot-manager" ? "Para canchas" : id === "beneficios" ? "Beneficios" : "Planes"}
+          {id === "que-es" ? "La app" : id === "clubes" ? "Clubes" : id === "como-funciona" ? "Cómo funciona" : "Para canchas"}
         </a>
       ))}
     </nav>
