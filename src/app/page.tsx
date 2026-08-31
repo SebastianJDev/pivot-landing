@@ -89,7 +89,7 @@ export default function LandingPage() {
         <div className="product-board" data-r="scale" aria-label="Vista previa de las herramientas de Pivot">
           <div className="board-heading"><span className="live-dot" /> Disponibilidad en tiempo real <strong>Hoy, 24 jun</strong></div>
           <div className="board-main">
-            <div className="court-card"><div className="court-lines" /><span className="court-badge">Cancha 03</span><strong>Padel City</strong><small>4 jugadores · 90 min</small></div>
+            <div className="court-card"><img src="/padel-city-court.png" alt="Cancha 3 de Padel City" /><div className="court-lines" /><span className="court-badge">Cancha 03</span><strong>Padel City</strong><small>4 jugadores · 90 min</small></div>
             <div className="booking-list"><div><span className="booking-time">18:00</span><span><b>Cancha sintética</b><small>Club Deportivo Norte</small></span><em>Disponible</em></div><div><span className="booking-time">19:30</span><span><b>Cancha de pádel</b><small>Padel City</small></span><em>Disponible</em></div><div><span className="booking-time">21:00</span><span><b>Cancha cubierta</b><small>Tenis Club Bogotá</small></span><em>2 cupos</em></div></div>
           </div>
           <div className="board-footer"><span><strong>12</strong> reservas hoy</span><span><strong>98%</strong> ocupación</span><a href="#descargar">Explorar clubes <ArrowRight /></a></div>
