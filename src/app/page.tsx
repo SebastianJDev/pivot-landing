@@ -1,17 +1,4 @@
-import {
-  ArrowRight,
-  BarChart3,
-  Building2,
-  CalendarDays,
-  Check,
-  ChevronRight,
-  Clock3,
-  MapPin,
-  ShieldCheck,
-  Star,
-  Trophy,
-  Users,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import ScrollReveal from "./scroll-reveal";
 import ScrollProgress from "./scroll-progress";

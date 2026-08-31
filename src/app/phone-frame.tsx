@@ -8,40 +8,9 @@ export default function PhoneFrame({
   alt: string;
 }) {
   return (
-    <div
-      style={{
-        position: "relative",
-        width: 280,
-        padding: 6,
-        border: "1.5px solid #888c92",
-        borderRadius: 40,
-        background: "linear-gradient(145deg, #1a1c20, #4a4e55 40%, #15171a)",
-        boxShadow:
-          "0 40px 80px rgba(15,25,40,.28), inset 0 0 0 1px rgba(255,255,255,.2)",
-      }}
-    >
-      {/* Notch */}
-      <div
-        style={{
-          position: "absolute",
-          top: 6,
-          left: "50%",
-          transform: "translateX(-50%)",
-          width: 78,
-          height: 21,
-          borderRadius: 20,
-          background: "#111",
-          zIndex: 2,
-        }}
-      />
-      <div
-        style={{
-          overflow: "hidden",
-          borderRadius: 34,
-          background: "#fff",
-          position: "relative",
-        }}
-      >
+    <div className="phone-frame">
+      <div className="phone-frame-notch" aria-hidden="true" />
+      <div className="phone-frame-screen">
         <Image
           src={src}
           alt={alt}
