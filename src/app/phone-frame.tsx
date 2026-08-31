@@ -16,14 +16,7 @@ export default function PhoneFrame({
           alt={alt}
           width={268}
           height={580}
-          style={{
-            display: "block",
-            width: "100%",
-            height: "auto",
-            objectFit: "cover",
-            objectPosition: "top",
-            marginTop: -32,
-          }}
+          style={{ display: "block", width: "100%", height: "auto" }}
           unoptimized
         />
       </div>
